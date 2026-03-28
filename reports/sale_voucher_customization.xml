@@ -1,0 +1,300 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<odoo>
+    <record id = "sale_voucher_customization" model = "report.paperformat">
+        <field name="name">A5 - Statement</field>
+        <field name="default" eval="True" />
+        <field name="format">A5</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="True"/>
+        <field name="header_spacing">15</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id = "action_sale_voucher_report" model = "ir.actions.report">
+        <field name="name">Sale Voucher Report</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">gs_lashio.sale_template</field>
+        <field name="report_file">gs_lashio.sale_template</field>
+        <field name="print_report_name">'Voucher - %s' % (object.name)</field>
+        <field name = "attachment"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref = "sale_voucher_customization"/>
+    </record>
+
+    <template id = "sale_template">
+        <t t-name="sale_voucher_customization.sale_template">
+            <t t-call = "web.html_container">
+                <t t-foreach = "docs" t-as = "doc">
+                    <t t-call = "web.internal_layout">
+                        <div class="page" style="font-family:serif !important;">
+                            <table style="width:100%; border-collapse:collapse; margin-top: 40px;">
+                                <tr style=" text-align:center; height:40px; padding:40px;">
+                                    <td colspan="6" style="border:0px solid #fbfafa;">
+                                    </td>
+                                </tr>
+                                <tr style=" text-align:center; height:60px; padding:40px;">
+                                    <td colspan="6" style="border:0px solid #fbfafa; margin-buttom:0px; font-size:45px; color:#ea940a; font-weight:bold;">
+                                        <div>GS (Lashio)</div>
+                                    </td>
+                                </tr>
+                                <tr style="height:40px;">
+                                    <td colspan="6" style="border:0px solid #fbfafa; font-size:20px; color:black; padding:16px 75px 4px 75px;">
+                                        <span style = "font-weight:normal;">Tyre, Battery, Engine Oil </span>
+                                        <span style = "font-weight:lighter;">ေရာင်းဝယ်ေရး</span>
+                                    </td>
+                                </tr>
+                                <tr style=" text-align:center;height:30px;">
+                                    <td colspan="6" style="border:0px solid #fbfafa; font-size:13px; color:black;">
+                                        <div style = "font-weight:normal;">Phone: 095260814,095260829,095260843</div>
+                                    </td>
+                                </tr>
+                                <tr style=" text-align:left;height:40px;">
+                                    <td colspan="1" style="border:0px solid #fbfafa; font-size:17px; color:red; text-align:left; width:40%;">
+                                        <div style = "font-weight:normal;">KARGO Battery</div>
+                                    </td>
+                                    <td colspan="4" style="border:0px solid #fbfafa; font-size:17px; width:20%">
+                                    </td>
+                                    <td colspan="1" style="border:0px solid #fbfafa; font-size:17px; color:blue; text-align:right; width:40%;">
+                                        <div style = "font-weight:normal;">PILOT Battery</div>
+                                    </td>
+                                </tr>
+                                <tr style=" text-align:left;height:40px;">
+                                    <td colspan="1" style="border:0px solid #fbfafa; font-size:15px; color:black; text-align:left; width:25%;">
+                                        <div style = "font-weight:normal;">Thu Kha</div>
+                                    </td>
+                                    <td colspan="4" style="border:0px solid #fbfafa; font-size:15px; width:50%">
+                                    </td>
+                                    <td colspan="1" style="border:0px solid #fbfafa; font-size:12px; color:black; text-align:right; width:25%;">
+                                        <div style = "font-weight:normal;">Invoice Number: </div>
+                                    </td>
+                                </tr>
+                                <tr style=" text-align:left;height:40px;">
+                                    <td colspan="1" style="border:0px solid #fbfafa; font-size:12px; color:black; text-align:left; width:25%;">
+                                        <div style = "font-weight:normal;">Thu Kha Mandalay Myanmar</div>
+                                    </td>
+                                    <td colspan="4" style="border:0px solid #fbfafa; font-size:12px; width:50%">
+                                    </td>
+                                    <td colspan="1" style="border:0px solid #fbfafa; font-size:12px; color:black; text-align:right; width:25%;">
+                                        <div style = "font-weight:normal;">Invoice Date: </div>
+                                    </td>
+                                </tr>
+                                <tr style=" text-align:left;height:40px;">
+                                    <td colspan="1" style="border:0px solid #fbfafa; font-size:12px; color:black; text-align:left; width:25%">
+                                    </td>
+                                    <td colspan="4" style="border:0px solid #fbfafa; font-size:12px; width:50%">
+                                    </td>
+                                    <td colspan="1" style="border:0px solid #fbfafa; font-size:12px; color:black; text-align:right; width:25%;">
+                                        <div style = "font-weight:normal;">Source: </div>
+                                    </td>
+                                </tr>
+                                <tr style="height:20px;">
+                                    <td colspan="6" style="border:0px solid #fbfafa;">
+                                    </td>
+                                </tr>
+                                <tr style="height:10px;">
+                                    <td colspan="1" 
+                                        style="border-right:1px solid #0f0e0e;    border-bottom:2px solid #0f0e0e;
+                                            border-left:1px solid #0f0e0e;
+                                            border-top:1px solid #0f0e0e; font-size:15px; color:black; background-color:#c98105;
+                                            padding:5px;
+                                            text-align:left; width:50%">
+                                        <div style = "font-weight:normal;">Description</div>
+                                    </td>
+                                    <td colspan="2" 
+                                    style="border-right:1px solid #0f0e0e;
+                                            border-bottom:2px solid #0f0e0e;
+                                            border-left:1px solid #0f0e0e;
+                                            border-top:1px solid #0f0e0e;
+                                            text-align:right;
+                                            padding:5px;
+                                            font-size:15px; background-color:#c98105; colcor:black; width:15%">
+                                        <div style = "font-weight:normal;">Quantity</div>
+                                    </td>
+                                    <td colspan="2" 
+                                        style="border-right:1px solid #0f0e0e;
+                                                border-bottom:2px solid #0f0e0e;
+                                                border-left:1px solid #0f0e0e;
+                                                border-top:1px solid #0f0e0e;
+                                                text-align:right;
+                                                padding:5px;
+                                                font-size:15px; background-color:#c98105; color:black;
+                                                width:15%">
+                                        <div style = "font-weight:normal;">
+                                            Unit Price
+                                        </div>
+                                    </td>
+                                    <td colspan="1" 
+                                        style="border-right:1px solid #0f0e0e;
+                                                border-bottom:2px solid #0f0e0e;
+                                                border-left:1px solid #0f0e0e;
+                                                border-top:1px solid #0f0e0e;
+                                                text-align:right;
+                                                padding:5px;
+                                                font-size:15px; background-color:#c98105; color:black; text-align:right; width:20%">
+                                        <div style = "font-weight:normal;">Amount</div>
+                                    </td>
+                                </tr>
+                                <tr style="height:11px;">
+                                    <td colspan="1" 
+                                        style="border:1px solid #0f0e0e;    font-size:14px; color:black;    
+                                            padding:5px;
+                                            text-align:left;
+                                            width:50%">
+                                        <div style = "font-weight:normal;">
+                                        Train S4 Turbo (15W40) 25L
+                                        </div>
+                                    </td>
+                                    <td colspan="2" 
+                                    style="border:1px solid #0f0e0e;
+                                            text-align:right;
+                                            padding:5px;
+                                            font-size:14px;
+                                            colcor:black;
+                                            width:15%">
+                                        <div style = "font-weight:normal;">
+                                        20 PCS
+                                        </div>
+                                    </td>
+                                    <td colspan="2" 
+                                        style="border:1px solid #0f0e0e;
+                                                text-align:right;
+                                                padding:5px;
+                                                font-size:14px;
+                                                color:black;
+                                                width:15%">
+                                        <div style = "font-weight:normal;">
+                                        500,000
+                                        </div>
+                                    </td>
+                                    <td colspan="1" 
+                                        style="border:1px solid #0f0e0e;
+                                                text-align:right;
+                                                padding:5px;
+                                                font-size:14px;
+                                                color:black;
+                                                width:20%">
+                                        <div style = "font-weight:normal;">
+                                        10,000,000
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr style="height:15px;">
+                                    <td colspan="6" style="border:0px solid #fbfafa;">
+                                    </td>
+                                </tr>
+                                <tr style="height:10px;">
+                                    <td colspan="2" 
+                                        style="border:0px solid #fbfafa;    font-size:15px; width:60%;">
+                                    </td>
+                                    <td colspan="2" 
+                                    style="border:1px solid #0f0e0e;
+                                            text-align:left;
+                                            padding:5px;
+                                            background-color:#f1eded;
+                                            font-size:15px;
+                                            colcor:black;
+                                            width:5%">
+                                        <div style = "font-weight:normal;">
+                                            Total
+                                        </div>
+                                    </td>
+                                    <td colspan="2" 
+                                        style="border:1px solid #0f0e0e;
+                                                text-align:right;
+                                                padding:5px;
+                                                background-color:#f1eded;
+                                                font-size:14px;
+                                                color:black;
+                                                width:25%">
+                                        <div style = "font-weight:normal;">
+                                        10,000,000.00 Ks
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr style="height:20px;">
+                                    <td colspan="6" style="border:0px solid #fbfafa; test-align:left; font-size:12px;">
+                                        <div style = "font-weight:normal;">Payment Communication: </div>
+                                    </td>
+                                </tr>
+                                <tr style="height:100px;">
+                                    <td colspan="6" style="border:0px solid #fbfafa;">
+                                    </td>
+                                </tr>
+                                <tr style=" text-align:left;height:30px;">
+                                    <td colspan="1" style="border:0px solid #fbfafa; font-size:13px; color:black; text-align:left; width:30%; padding-left:30px;">
+                                        <div style = "font-weight:normal;">Sale Person</div>
+                                    </td>
+                                    <td colspan="4" style="border:0px solid #fbfafa; font-size:13px; width:40%">
+                                    </td>
+                                    <td colspan="1" style="border:0px solid #fbfafa; font-size:13px; color:black; text-align:left; width:30%; padding:10xp;">
+                                        <div style = "font-weight:normal;">Customer</div>
+                                    </td>
+                                </tr>
+                                <tr style="height:15px;">
+                                    <td colspan="6" style="border:0px solid #fbfafa;">
+                                    </td>
+                                </tr>
+                                <tr style=" text-align:left;height:30px;">
+                                    <td colspan="1" style="border:0px solid #fbfafa; font-size:11px; color:black; text-align:left; width:30%;">
+                                        <span style = "font-weight:normal;">Sign:</span>
+                                        <span style="display:inline-block; width:120px; border-bottom:1px solid black; margin-left:20px;"></span>
+                                    </td>
+                                    <td colspan="3" style="border:0px solid #fbfafa; font-size:11px; width:40%">
+                                    </td>
+                                    <td colspan="2" style="border:0px solid #fbfafa; font-size:11px; color:black; text-align:left; width:30%;">
+                                        <span style = "font-weight:normal;">Sign:</span>
+                                        <span style="display:inline-block; width:120px; border-bottom:1px solid black; margin-left:20px;"></span>
+                                    </td>
+                                </tr>
+                                <tr style=" text-align:left;height:30px;">
+                                    <td colspan="1" style="border:0px solid #fbfafa; font-size:11px; color:black; text-align:left; width:30%;">
+                                        <span style = "font-weight:normal;">Name:</span>
+                                        <span style="display:inline-block; width:120px; border-bottom:1px solid black; margin-left:13px;"></span>
+                                    </td>
+                                    <td colspan="3" style="border:0px solid #fbfafa; font-size:11px; width:40%">
+                                    </td>
+                                    <td colspan="2" style="border:0px solid #fbfafa; font-size:11px; color:black; text-align:left; width:30%;">
+                                        <span style = "font-weight:normal;">Name:</span>
+                                        <span style="display:inline-block; width:120px; border-bottom:1px solid black; margin-left:13px;"></span>
+                                    </td>
+                                </tr>
+                                <tr style=" text-align:left;height:30px;">
+                                    <td colspan="1" style="border:0px solid #fbfafa; font-size:11px; color:black; text-align:left; width:30%;">
+                                        <span style = "font-weight:normal;">Date:</span>
+                                        <span style="display:inline-block; width:120px; border-bottom:1px solid black; margin-left:20px;"></span>
+                                    </td>
+                                    <td colspan="3" style="border:0px solid #fbfafa; font-size:11px; width:40%">
+                                    </td>
+                                    <td colspan="2" style="border:0px solid #fbfafa; font-size:11px; color:black; text-align:left; width:30%;">
+                                        <span style = "font-weight:normal;">Date:</span>
+                                        <span style="display:inline-block; width:120px; border-bottom:1px solid black; margin-left:20px;"></span>
+                                    </td>
+                                </tr>
+                                <tr style="height:15px;">
+                                    <td colspan="6" style="border:0px solid #fbfafa;">
+                                        <span style="display:inline-block; width:100%; border-bottom:1px dotted black;"></span>
+                                    </td>
+                                </tr>
+                                <tr style="height:15px;">
+                                    <td colspan="6" style="border:0px solid #fbfafa; font-size:13px; color:black; text-align:center; width:100%;">
+                                        <div style = "font-weight:normal;">
+                                        Thank you for doing Business with us!
+                                        </div>
+                                    </td>    
+                                </tr>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </t> 
+    </template>
+</odoo>
