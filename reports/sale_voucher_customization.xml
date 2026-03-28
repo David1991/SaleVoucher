@@ -68,7 +68,9 @@
                                 </tr>
                                 <tr style=" text-align:left;height:40px;">
                                     <td colspan="1" style="border:0px solid #fbfafa; font-size:15px; color:black; text-align:left; width:25%;">
-                                        <div style = "font-weight:normal;">Thu Kha</div>
+                                        <div style = "font-weight:normal;">
+                                            <t t-esc = "doc.partner_id.name"/>
+                                        </div>
                                     </td>
                                     <td colspan="4" style="border:0px solid #fbfafa; font-size:15px; width:50%">
                                     </td>
@@ -78,7 +80,9 @@
                                 </tr>
                                 <tr style=" text-align:left;height:40px;">
                                     <td colspan="1" style="border:0px solid #fbfafa; font-size:12px; color:black; text-align:left; width:25%;">
-                                        <div style = "font-weight:normal;">Thu Kha Mandalay Myanmar</div>
+                                        <div style = "font-weight:normal;">
+                                            <t t-esc = "doc.partner_id.street"/>
+                                        </div>
                                     </td>
                                     <td colspan="4" style="border:0px solid #fbfafa; font-size:12px; width:50%">
                                     </td>
@@ -142,6 +146,7 @@
                                         <div style = "font-weight:normal;">Amount</div>
                                     </td>
                                 </tr>
+                                <t t-foreach = "doc.order_line" t-as = "line">
                                 <tr style="height:11px;">
                                     <td colspan="1" 
                                         style="border:1px solid #0f0e0e;    font-size:14px; color:black;    
@@ -149,7 +154,7 @@
                                             text-align:left;
                                             width:50%">
                                         <div style = "font-weight:normal;">
-                                        Train S4 Turbo (15W40) 25L
+                                            <t t-esc = "line.name"/>
                                         </div>
                                     </td>
                                     <td colspan="2" 
@@ -160,7 +165,7 @@
                                             colcor:black;
                                             width:15%">
                                         <div style = "font-weight:normal;">
-                                        20 PCS
+                                            <t t-esc = "line.product_uom_qty"/>
                                         </div>
                                     </td>
                                     <td colspan="2" 
@@ -171,7 +176,7 @@
                                                 color:black;
                                                 width:15%">
                                         <div style = "font-weight:normal;">
-                                        500,000
+                                            <t t-esc = "line.price_unit"/>
                                         </div>
                                     </td>
                                     <td colspan="1" 
@@ -182,10 +187,11 @@
                                                 color:black;
                                                 width:20%">
                                         <div style = "font-weight:normal;">
-                                        10,000,000
+                                            <t t-esc = "line.price_total"/>
                                         </div>
                                     </td>
                                 </tr>
+                                </t>
                                 <tr style="height:15px;">
                                     <td colspan="6" style="border:0px solid #fbfafa;">
                                     </td>
@@ -215,7 +221,7 @@
                                                 color:black;
                                                 width:25%">
                                         <div style = "font-weight:normal;">
-                                        10,000,000.00 Ks
+                                            <t t-esc = "doc.amount_total" t-options='{"widget":"monetary","display_currency":doc.currency_id}'/>
                                         </div>
                                     </td>
                                 </tr>
